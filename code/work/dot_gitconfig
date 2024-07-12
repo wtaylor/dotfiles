@@ -1,0 +1,7 @@
+[user]
+	name = William Taylor
+	email = william.taylor@ovo.com
+
+[core]
+	sshCommand = ssh -i ~/.ssh/work_ed25519 -F /dev/null
+

@@ -1,0 +1,6 @@
+[user]
+	name = William Taylor
+	email = me@willtaylor.info
+[includeIf "gitdir:~/code/work/"]
+	path = ~/code/work/.gitconfig
+
