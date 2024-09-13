@@ -23,7 +23,7 @@ What is Kickstart?
 
   Kickstart.nvim is *not* a distribution.
 
-  Kickstart.nvim is a starting point for your own configuration.
+  Kickstart.nvim is a starting point for your own configuration./
     The goal is that you can read every line of code, top-to-bottom, understand
     what your configuration is doing, and modify it to suit your needs.
 
@@ -90,7 +90,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -101,7 +101,8 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
+-- vim.opt.statuscolumn = "%s %l %r"
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -112,7 +113,7 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -155,6 +156,27 @@ vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set("", "<C-a>", "")
+vim.keymap.set("l", "<C-a>", "")
+vim.keymap.set("", "<C-b>", "")
+vim.keymap.set("l", "<C-b>", "")
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "J", "mzJ`z")
+
+vim.keymap.set("x", "<leader>p", '"_dP')
+
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", '"+Y')
+
+vim.keymap.set("n", "<leader>d", '"_d')
+vim.keymap.set("v", "<leader>d", '"_d')
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -224,6 +246,43 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
+	{
+		"mrjones2014/smart-splits.nvim",
+		lazy = false,
+		config = function()
+			-- recommended mappings
+			-- resizing splits
+			-- these keymaps will also accept a range,
+			-- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
+			vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
+			vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
+			vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
+			vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
+			-- moving between splits
+			vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
+			vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
+			vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
+			vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+			vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
+			-- swapping buffers between windows
+			vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
+			vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
+			vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
+			vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+		end,
+	},
+	{
+		"gbprod/nord.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nord").setup({})
+			vim.cmd.colorscheme("nord")
+		end,
+		install = {
+			colorscheme = { "nord" },
+		},
+	},
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
@@ -279,19 +338,15 @@ require("lazy").setup({
 			require("which-key").setup()
 
 			-- Document existing key chains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-				["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
-				["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
+			require("which-key").add({
+				{ "<leader>c", group = "[C]ode" },
+				{ "<leader>d", group = "[D]ocument" },
+				{ "<leader>r", group = "[R]ename" },
+				{ "<leader>s", group = "[S]earch" },
+				{ "<leader>w", group = "[W]orkspace" },
+				{ "<leader>t", group = "[T]oggle" },
+				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 			})
-			-- visual mode
-			require("which-key").register({
-				["<leader>h"] = { "Git [H]unk" },
-			}, { mode = "v" })
 		end,
 	},
 

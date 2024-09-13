@@ -1,13 +1,19 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
+local keymap = require("keymap")
+local theme = require("theme")
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
+config.tab_and_split_indices_are_zero_based = true
 
--- This is where you actually apply your config choices
+config.color_scheme = theme.color_scheme
+config.use_fancy_tab_bar = theme.use_fancy_tab_bar
+config.window_decorations = theme.window_decorations
+config.hide_tab_bar_if_only_one_tab = theme.hide_tab_bar_if_only_one_tab
+config.colors = theme.colors
 
-config.color_scheme = "Nord (base16)"
--- config.font = wezterm.font 'FiraCode Nerd Font Mono'
+config.disable_default_key_bindings = true
+config.leader = keymap.leader
+config.keys = keymap.keys
+config.key_tables = keymap.key_tables
 
--- and finally, return the configuration to wezterm
 return config
