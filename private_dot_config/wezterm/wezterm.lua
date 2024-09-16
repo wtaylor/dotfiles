@@ -4,6 +4,7 @@ local theme = require("theme")
 
 local config = wezterm.config_builder()
 config.tab_and_split_indices_are_zero_based = true
+config.enable_wayland = false
 
 config.color_scheme = theme.color_scheme
 config.use_fancy_tab_bar = theme.use_fancy_tab_bar
