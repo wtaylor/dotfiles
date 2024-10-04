@@ -17,4 +17,6 @@ config.leader = keymap.leader
 config.keys = keymap.keys
 config.key_tables = keymap.key_tables
 
+config.audible_bell = "Disabled"
+
 return config
