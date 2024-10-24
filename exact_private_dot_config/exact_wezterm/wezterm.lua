@@ -18,5 +18,6 @@ config.keys = keymap.keys
 config.key_tables = keymap.key_tables
 
 config.audible_bell = "Disabled"
+config.adjust_window_size_when_changing_font_size = false
 
 return config
