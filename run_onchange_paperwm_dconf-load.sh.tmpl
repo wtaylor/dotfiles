@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # paperwm.ini hash: {{ include "supporting_files/dconf/paperwm.ini" | sha256sum }}
 dconf load /org/gnome/shell/extensions/paperwm/ < {{ joinPath .chezmoi.sourceDir "supporting_files/dconf/paperwm.ini" | quote }}

@@ -13,6 +13,7 @@ config.hide_tab_bar_if_only_one_tab = theme.hide_tab_bar_if_only_one_tab
 config.colors = theme.colors
 
 config.disable_default_key_bindings = true
+config.enable_kitty_keyboard = true
 config.leader = keymap.leader
 config.keys = keymap.keys
 config.key_tables = keymap.key_tables
