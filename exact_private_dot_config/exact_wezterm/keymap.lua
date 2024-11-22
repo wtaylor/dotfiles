@@ -36,6 +36,24 @@ end
 return {
 	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 3000 },
 	keys = {
+		{
+			key = "Delete",
+			action = wezterm.action_callback(function(win, pane)
+				local proc = pane:get_foreground_process_name()
+				if proc ~= "nvim" then
+					win:perform_action(
+						act.SendKey({
+							key = "Delete",
+						}),
+						pane
+					)
+					return
+				end
+
+				local key_code = utf8.char(0x1b) .. "[3;1~"
+				win:perform_action(act.SendString(key_code), pane)
+			end),
+		},
 		-- tmux-like bindings
 		{ key = '"', mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "%", mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
