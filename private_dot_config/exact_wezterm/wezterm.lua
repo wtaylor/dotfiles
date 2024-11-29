@@ -11,6 +11,7 @@ config.use_fancy_tab_bar = theme.use_fancy_tab_bar
 config.window_decorations = theme.window_decorations
 config.hide_tab_bar_if_only_one_tab = theme.hide_tab_bar_if_only_one_tab
 config.colors = theme.colors
+config.window_background_opacity = theme.window_background_opacity
 
 config.disable_default_key_bindings = true
 config.enable_kitty_keyboard = true
