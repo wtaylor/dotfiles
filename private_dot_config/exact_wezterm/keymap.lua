@@ -74,6 +74,8 @@ return {
 		{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
 		{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
 
+		{ key = "f", mods = "LEADER", action = act.ToggleFullScreen },
+
 		-- smartsplits.nvim
 		split_nav("move", "h"),
 		split_nav("move", "j"),
