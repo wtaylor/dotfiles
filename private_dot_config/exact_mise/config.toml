@@ -1,0 +1,9 @@
+[env]
+
+[tools]
+fd = "10.2.0"
+lazygit = "0.45.2"
+neovim = "0.10.3"
+node = "23.6.1"
+ripgrep = "14.1.1"
+yamlfmt = "0.15.0"

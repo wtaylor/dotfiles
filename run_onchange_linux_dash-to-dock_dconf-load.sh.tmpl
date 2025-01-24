@@ -1,5 +1,6 @@
-#!/bin/env bash
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
 
 # dash-to-dock.ini hash: {{ include "supporting_files/dconf/dash-to-dock.ini" | sha256sum }}
 dconf load /org/gnome/shell/extensions/dash-to-dock/ < {{ joinPath .chezmoi.sourceDir "supporting_files/dconf/dash-to-dock.ini" | quote }}
-
+{{ end -}}

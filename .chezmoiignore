@@ -1,1 +1,6 @@
 supporting_files/
+
+{{- if eq .chezmoi.os "darwin" }}
+.local/share/icons/wezterm-icon.svg
+.local/share/applications/org.wezfurlong.Wezterm.desktop
+{{- end }}
