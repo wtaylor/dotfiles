@@ -2,9 +2,9 @@
 
 set -euxo pipefail
 
-brew install starship mise gnupg
+brew install starship mise gnupg slsa-verifier harlequin mosquitto nats
 
-{{- if eq .chezmoi.os "linux" -}}
+{{ if eq .chezmoi.os "linux" }}
 if [ ! -f ~/.local/bin/wezterm ]; then
   curl -L https://github.com/wez/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu20.04.AppImage -o ~/.local/bin/wezterm
 fi
