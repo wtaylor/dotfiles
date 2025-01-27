@@ -1,6 +1,10 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	export PATH=/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+  export PATH="$PATH:/opt/podman/bin"
+  export PATH="$PATH:/usr/local/share/dotnet"
 fi
+
+export CLICOLOR=1
 
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
