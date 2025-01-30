@@ -6,4 +6,6 @@ supporting_files/
 .local/share/applications/org.wezfurlong.Wezterm.desktop
 {{ else if eq .chezmoi.os "linux" }}
 .chezmoiscripts/macos_**
+.config/aerospace/**
+.config/karabiner/**
 {{- end }}
