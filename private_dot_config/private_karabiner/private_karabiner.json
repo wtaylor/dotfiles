@@ -25,22 +25,6 @@
                         ]
                     },
                     {
-                        "description": "Disable Command - H Minimise",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "PC Find/Replace",
                         "manipulators": [
                             {
