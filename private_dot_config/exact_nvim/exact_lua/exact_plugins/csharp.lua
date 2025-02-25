@@ -22,42 +22,81 @@ return {
     "mfussenegger/nvim-dap",
     opts = function()
       local dap = require("dap")
-      local dotnet_build_project = function()
-        local default_path = vim.fn.getcwd() .. "/"
-        if vim.g["dotnet_last_proj_path"] ~= nil then
-          default_path = vim.g["dotnet_last_proj_path"]
+
+      --- Converts a callback-based function to a coroutine function.
+      ---
+      ---@param f function The function to convert.
+      ---                  The callback needs to be its first argument.
+      ---@return function A fire-and-forget coroutine function.
+      ---                 Accepts the same arguments as f without the callback.
+      ---                 Returns what f has passed to the callback.
+      local cb_to_co = function(f)
+        local f_co = function(...)
+          local this = coroutine.running()
+          assert(this ~= nil, "The result of cb_to_co must be called within a coroutine.")
+
+          local f_status = "running"
+          local f_ret = nil
+          -- f needs to have the callback as its first argument, because varargs
+          -- passing doesn’t work otherwise.
+          f(function(ret)
+            f_status = "done"
+            f_ret = ret
+            if coroutine.status(this) == "suspended" then
+              -- If we are suspended, then f_co has yielded control after calling f.
+              -- Use the caller of this callback to resume computation until the next yield.
+              coroutine.resume(this)
+            end
+          end, ...)
+          if f_status == "running" then
+            -- If we are here, then `f` must not have called the callback yet, so it
+            -- will do so asynchronously.
+            -- Yield control and wait for the callback to resume it.
+            coroutine.yield()
+          end
+          return f_ret
         end
-        local path = vim.fn.input("Path to your *proj file", default_path, "file")
-        vim.g["dotnet_last_proj_path"] = path
-        local cmd = "dotnet build -c Debug " .. path .. " > /dev/null"
-        print("")
-        print("Cmd to execute: " .. cmd)
-        local f = os.execute(cmd)
-        if f == 0 then
-          print("\nBuild: ✔️ ")
-        else
-          print("\nBuild: ❌ (code: " .. f .. ")")
-        end
+
+        return f_co
       end
 
-      local dotnet_get_dll_path = function()
-        return coroutine.create(function(dap_run_co)
-          local items = vim.fn.globpath(vim.fn.getcwd(), "**/bin/Debug/**/*.dll", 0, 1)
-          local opts = {
-            format_item = function(path)
-              return vim.fn.fnamemodify(path, ":t")
-            end,
-          }
-          local function cont(choice)
-            if choice == nil then
-              return nil
-            else
-              coroutine.resume(dap_run_co, choice)
-            end
-          end
+      local exec_co = cb_to_co(function(cb, cmd, opts)
+        vim.system(cmd, opts, cb)
+      end)
 
-          vim.ui.select(items, opts, cont)
-        end)
+      local select_co = cb_to_co(function(cb, items, opts)
+        vim.ui.select(items, opts, cb)
+      end)
+
+      local select_csproj_co = function()
+        local items = vim.fn.globpath(vim.fn.getcwd(), "**/*.csproj", 0, 1)
+        local opts = {
+          format_item = function(path)
+            return vim.fn.fnamemodify(path, ":t")
+          end,
+        }
+        return select_co(items, opts)
+      end
+
+      local select_dll_co = function()
+        local items = vim.fn.globpath(vim.fn.getcwd(), "**/bin/Debug/**/*.dll", 0, 1)
+        local opts = {
+          format_item = function(path)
+            return vim.fn.fnamemodify(path, ":t")
+          end,
+        }
+        return select_co(items, opts)
+      end
+
+      local dotnet_build_project_co = function(project)
+        local cmd = { "dotnet", "build", "-c", "Debug", project }
+        print("\nBuilding project " .. project .. "...")
+        local exec_result = exec_co(cmd, {})
+        if exec_result.signal == 0 then
+          print("\nBuild: ✔️\n\n" .. exec_result.stdout)
+        else
+          print("\nBuild: ❌\n\n" .. exec_result.stderr)
+        end
       end
 
       if not dap.adapters["netcoredbg"] then
@@ -79,10 +118,14 @@ return {
               request = "launch",
               ---@diagnostic disable-next-line: redundant-parameter
               program = function()
-                if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
-                  dotnet_build_project()
-                end
-                return dotnet_get_dll_path()
+                return coroutine.create(function(dap_run_co)
+                  if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
+                    local project = select_csproj_co()
+                    dotnet_build_project_co(project)
+                  end
+                  local dll = select_dll_co()
+                  coroutine.resume(dap_run_co, dll)
+                end)
               end,
               cwd = "${workspaceFolder}",
             },
