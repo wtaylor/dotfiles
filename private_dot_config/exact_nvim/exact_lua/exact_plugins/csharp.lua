@@ -20,6 +20,15 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
+    keys = {
+      {
+        "<leader>dE",
+        function()
+          require("dap").set_exception_breakpoints()
+        end,
+        desc = "Set Exception Breakpoints",
+      },
+    },
     opts = function()
       local dap = require("dap")
 
@@ -54,7 +63,7 @@ return {
               type = "netcoredbg",
               name = "Launch file",
               request = "launch",
-              ---@diagnostic disable-next-line: redundant-parameter
+              cwd = "${fileDirname}",
               program = function()
                 return coroutine.create(function(dap_run_co)
                   vim.ui.select({ "Yes", "No" }, { prompt = "Rebuild Project?" }, function(choice)
@@ -87,7 +96,6 @@ return {
                   end)
                 end)
               end,
-              cwd = "${workspaceFolder}",
             },
           }
         end
