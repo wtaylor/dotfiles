@@ -25,7 +25,7 @@ config.window_background_opacity = theme.window_background_opacity
 config.window_padding = { left = 16, right = 16, top = 16, bottom = 8 }
 
 config.disable_default_key_bindings = true
-config.enable_kitty_keyboard = true
+config.enable_kitty_keyboard = false
 config.leader = keymap.leader
 config.keys = keymap.keys
 config.key_tables = keymap.key_tables
