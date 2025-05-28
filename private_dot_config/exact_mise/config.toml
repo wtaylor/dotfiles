@@ -3,10 +3,14 @@
 [tools]
 argocd = "2.13.3"
 aws-cli = "2.23.6"
+cilium-cli = "0.18.3"
+cilium-hubble = "1.17.3"
 crane = "0.20.3"
 fd = "10.2.0"
 fzf = "0.58.0"
 github-cli = "2.65.0"
+go = "1.24.1"
+golangci-lint = "2.1.6"
 helm = "3.17.0"
 k9s = "0.32.7"
 kube-linter = "0.7.1"
@@ -26,3 +30,4 @@ yamlfmt = "0.15.0"
 
 [settings]
 experimental = true
+idiomatic_version_file_enable_tools = ["python"]
