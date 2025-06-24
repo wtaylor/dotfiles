@@ -19,10 +19,6 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
-    -- AI
-    { import = "lazyvim.plugins.extras.ai.copilot" },
-    { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-
     -- DAP
     { import = "lazyvim.plugins.extras.dap.core" },
 
@@ -30,6 +26,11 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.illuminate" },
     { import = "lazyvim.plugins.extras.editor.mini-diff" },
     { import = "lazyvim.plugins.extras.editor.navic" },
+    { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
+    { import = "lazyvim.plugins.extras.editor.snacks_picker" },
+
+    -- UI
+    { import = "lazyvim.plugins.extras.ui.edgy" },
 
     -- Languages
     { import = "lazyvim.plugins.extras.lang.ansible" },

@@ -6,6 +6,7 @@ end
 
 fish_add_path ~/.local/bin
 fish_add_path ~/.dotnet
+fish_add_path ~/.bun/bin
 
 set -x DOTNET_ROOT "$HOME/.dotnet"
 
