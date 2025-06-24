@@ -19,6 +19,9 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
+    -- AI
+    { import = "lazyvim.plugins.extras.ai.supermaven" },
+
     -- DAP
     { import = "lazyvim.plugins.extras.dap.core" },
 
