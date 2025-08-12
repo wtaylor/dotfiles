@@ -2,7 +2,17 @@
 
 set -euxo pipefail
 
+{{ if lookPath "brew" }}
 brew install fish fisher starship mise gnupg slsa-verifier harlequin mosquitto
+{{ else }}
+{{ if lookPath "apt-get" }}
+sudo apt-get update
+sudo apt-get install fish curl gnupg git
+{{ end }}
+fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher'
+curl -sS https://starship.rs/install.sh | sh
+curl https://mise.run | sh
+{{ end }}
 
 {{ if eq .chezmoi.os "linux" }}
 if [ ! -f ~/.local/bin/wezterm ]; then
