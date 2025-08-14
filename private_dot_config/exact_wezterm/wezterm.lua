@@ -4,6 +4,42 @@ local theme = require("theme")
 
 local config = wezterm.config_builder()
 
+function detect_host_os()
+	-- package.config:sub(1,1) returns '\' for windows and '/' for *nix.
+	if package.config:sub(1, 1) == "\\" then
+		return "windows"
+	else
+		-- uname should be available on *nix systems.
+		local check = io.popen("uname -s")
+		local result = check:read("*l")
+		check:close()
+
+		if result == "Darwin" then
+			return "macos"
+		else
+			return "linux"
+		end
+	end
+end
+
+local host_os = detect_host_os()
+
+if host_os == "macos" then
+	-- check homebrew binary symlinks on startup.
+	config.set_environment_variables = {
+		PATH = wezterm.home_dir .. ":/opt/homebrew/bin:/opt/podman/bin:/usr/local/bin/:" .. os.getenv("PATH"),
+	}
+
+	config.unix_domains = {
+		{
+			name = "devbox",
+			proxy_command = { "/opt/homebrew/bin/podman", "exec", "-i", "devbox", "wezterm", "cli", "proxy" },
+		},
+	}
+
+	config.font_size = 15.0
+end
+
 -- Show which key table is active in the status area
 wezterm.on("update-right-status", function(window, pane)
 	local name = window:active_key_table()

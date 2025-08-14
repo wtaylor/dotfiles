@@ -38,8 +38,9 @@ return {
 		-- tmux-like bindings
 		{ key = '"', mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "%", mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-		{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-		{ key = "&", mods = "LEADER|SHIFT", action = act.CloseCurrentTab({ confirm = false }) },
+		{ key = "c", mods = "LEADER", action = act.SpawnTab("DefaultDomain") },
+		{ key = "b", mods = "LEADER", action = act.SpawnTab({ DomainName = "devbox" }) },
+		{ key = "x", mods = "LEADER", action = act.CloseCurrentTab({ confirm = false }) },
 
 		{ key = "0", mods = "LEADER", action = act.ActivateTab(0) },
 		{ key = "1", mods = "LEADER", action = act.ActivateTab(1) },
@@ -58,8 +59,7 @@ return {
 		{ key = "f", mods = "LEADER", action = act.ToggleFullScreen },
 
 		-- defaults (unbind SUPER variants as SUPER is reserved for window tiling
-		{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
-		{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
+		{ key = "Tab", mods = "CTRL", action = act.ActivateLastTab },
 		{ key = "+", mods = "CTRL", action = act.IncreaseFontSize },
 		{ key = "+", mods = "SHIFT|CTRL", action = act.IncreaseFontSize },
 		{ key = "-", mods = "CTRL", action = act.DecreaseFontSize },
@@ -74,8 +74,6 @@ return {
 		{ key = "X", mods = "SHIFT|CTRL", action = act.ActivateCopyMode },
 		{ key = "Z", mods = "CTRL", action = act.TogglePaneZoomState },
 		{ key = "Z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
-		{ key = "_", mods = "CTRL", action = act.DecreaseFontSize },
-		{ key = "_", mods = "SHIFT|CTRL", action = act.DecreaseFontSize },
 		{ key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
 		{ key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
 		{ key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = true }) },
@@ -99,8 +97,9 @@ return {
 
 			{ key = '"', mods = "SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 			{ key = "%", mods = "SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-			{ key = "c", mods = "NONE", action = act.SpawnTab("CurrentPaneDomain") },
-			{ key = "&", mods = "SHIFT", action = act.CloseCurrentTab({ confirm = false }) },
+			{ key = "c", mods = "NONE", action = act.SpawnTab("DefaultDomain") },
+			{ key = "b", mods = "NONE", action = act.SpawnTab({ DomainName = "devbox" }) },
+			{ key = "x", mods = "NONE", action = act.CloseCurrentTab({ confirm = false }) },
 			{ key = "0", mods = "NONE", action = act.ActivateTab(0) },
 			{ key = "1", mods = "NONE", action = act.ActivateTab(1) },
 			{ key = "2", mods = "NONE", action = act.ActivateTab(2) },
@@ -113,6 +112,8 @@ return {
 			{ key = "9", mods = "NONE", action = act.ActivateTab(9) },
 			{ key = "p", mods = "NONE", action = act.ActivateTabRelative(-1) },
 			{ key = "n", mods = "NONE", action = act.ActivateTabRelative(1) },
+			{ key = "n", mods = "SHIFT", action = act.MoveTabRelative(1) },
+			{ key = "p", mods = "SHIFT", action = act.MoveTabRelative(-1) },
 		},
 		copy_mode = {
 			{ key = "Tab", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
