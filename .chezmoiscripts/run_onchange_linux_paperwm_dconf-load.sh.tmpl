@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "dconf" -}}
 #!/usr/bin/env bash
 
 # paperwm.ini hash: {{ include "supporting_files/dconf/paperwm.ini" | sha256sum }}

@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "linux" -}}
+{{ if lookPath "dconf" -}}
 #!/usr/bin/env bash
 
 # dash-to-dock.ini hash: {{ include "supporting_files/dconf/dash-to-dock.ini" | sha256sum }}
