@@ -1,9 +1,5 @@
 return {
 	color_scheme = "Nord (base16)",
-	use_fancy_tab_bar = false,
-	window_decorations = "RESIZE",
-	hide_tab_bar_if_only_one_tab = false,
-	window_background_opacity = 1,
 
 	colors = {
 		tab_bar = {

@@ -1,10 +1,12 @@
 return {
   {
-    "gbprod/nord.nvim",
+    "wtaylor/nord.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("nord").setup({ transparent = false })
+      require("nord").setup({
+        transparent = true,
+      })
       vim.cmd.colorscheme("nord")
     end,
     install = {

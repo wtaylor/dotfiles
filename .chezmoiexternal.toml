@@ -1,0 +1,4 @@
+[".config/quickshell/noctalia-shell"]
+type = "git-repo"
+url = "https://github.com/wtaylor/noctalia-shell.git"
+refreshPeriod = "1h"

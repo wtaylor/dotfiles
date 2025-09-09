@@ -50,14 +50,14 @@ wezterm.on("update-right-status", function(window, pane)
 end)
 
 config.tab_and_split_indices_are_zero_based = true
-config.enable_wayland = false
+config.enable_wayland = true
 
 config.color_scheme = theme.color_scheme
-config.use_fancy_tab_bar = theme.use_fancy_tab_bar
-config.window_decorations = theme.window_decorations
-config.hide_tab_bar_if_only_one_tab = theme.hide_tab_bar_if_only_one_tab
+config.use_fancy_tab_bar = false
+config.window_decorations = "TITLE | RESIZE"
+config.hide_tab_bar_if_only_one_tab = true
 config.colors = theme.colors
-config.window_background_opacity = theme.window_background_opacity
+config.window_background_opacity = 0.95
 config.window_padding = { left = 16, right = 16, top = 16, bottom = 8 }
 
 config.disable_default_key_bindings = true

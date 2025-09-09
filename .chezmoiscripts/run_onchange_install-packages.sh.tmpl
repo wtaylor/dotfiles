@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 {{ if lookPath "brew" }}
-brew install fish fisher starship mise gnupg slsa-verifier harlequin mosquitto
+brew install fish fisher starship gnupg slsa-verifier harlequin mosquitto
 {{ else }}
 {{ if lookPath "apt-get" }}
 sudo apt-get update
@@ -11,15 +11,10 @@ sudo apt-get install fish curl gnupg git
 {{ end }}
 fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher'
 curl -sS https://starship.rs/install.sh | sh
-curl https://mise.run | sh
 {{ end }}
 
-{{ if (and (eq .chezmoi.os "linux") (eq (env "container") "")) }}
-if [ ! -f ~/.local/bin/wezterm ]; then
-  curl -L https://github.com/wez/wezterm/releases/download/nightly/WezTerm-nightly-Ubuntu20.04.AppImage -o ~/.local/bin/wezterm
-fi
-chmod +x ~/.local/bin/wezterm
-{{ else if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" }}
+brew install mise
 brew install --cask karabiner-elements
 brew install --cask wezterm
 brew install --cask podman-desktop
