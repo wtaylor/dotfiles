@@ -81,6 +81,22 @@ return {
 		{ key = "z", mods = "SHIFT|CTRL", action = act.TogglePaneZoomState },
 		{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 		{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
+
+		-- my extras
+		{ key = ".", mods = "CTRL", action = act.ActivateTabRelative(1) },
+		{ key = ",", mods = "CTRL", action = act.ActivateTabRelative(-1) },
+		{ key = ">", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
+		{ key = "<", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
+
+		-- { key = "h", mods = "CTRL", action = act.ActivatePaneDirection("Left") },
+		-- { key = "j", mods = "CTRL", action = act.ActivatePaneDirection("Down") },
+		-- { key = "k", mods = "CTRL", action = act.ActivatePaneDirection("Up") },
+		-- { key = "l", mods = "CTRL", action = act.ActivatePaneDirection("Right") },
+		--
+		-- { key = "h", mods = "ALT", action = act.AdjustPaneSize({ "Left", 3 }) },
+		-- { key = "j", mods = "ALT", action = act.AdjustPaneSize({ "Down", 3 }) },
+		-- { key = "k", mods = "ALT", action = act.AdjustPaneSize({ "Up", 3 }) },
+		-- { key = "l", mods = "ALT", action = act.AdjustPaneSize({ "Right", 3 }) },
 	},
 
 	key_tables = {
@@ -114,6 +130,10 @@ return {
 			{ key = "n", mods = "NONE", action = act.ActivateTabRelative(1) },
 			{ key = "n", mods = "SHIFT", action = act.MoveTabRelative(1) },
 			{ key = "p", mods = "SHIFT", action = act.MoveTabRelative(-1) },
+			{ key = ",", mods = "NONE", action = act.ActivateTabRelative(-1) },
+			{ key = ".", mods = "NONE", action = act.ActivateTabRelative(1) },
+			{ key = ">", mods = "SHIFT", action = act.MoveTabRelative(1) },
+			{ key = "<", mods = "SHIFT", action = act.MoveTabRelative(-1) },
 		},
 		copy_mode = {
 			{ key = "Tab", mods = "NONE", action = act.CopyMode("MoveForwardWord") },

@@ -1,8 +1,10 @@
 local wezterm = require("wezterm")
 local keymap = require("keymap")
 local theme = require("theme")
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
 local config = wezterm.config_builder()
+-- you can put the rest of your Wezterm config here
 
 function detect_host_os()
 	-- package.config:sub(1,1) returns '\' for windows and '/' for *nix.
@@ -70,5 +72,14 @@ config.audible_bell = "Disabled"
 config.adjust_window_size_when_changing_font_size = false
 
 config.default_prog = { "fish", "-l" }
+
+smart_splits.apply_to_config(config, {
+	direction_keys = { "h", "j", "k", "l" },
+	modifiers = {
+		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
+		resize = "META", -- modifier to use for pane resize, e.g. META+h to resize to the left
+	},
+	log_level = "info",
+})
 
 return config
