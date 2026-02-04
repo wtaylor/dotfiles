@@ -2,7 +2,10 @@
 
 [tools]
 argocd = "2.13.3"
-aws-cli = "2.28.11"
+aws-cli = { version = "2.28.11", symlink_bins = "true" }
+awscli = { version = "2.32.24", symlink_bins = "true" }
+"cargo:loco" = "0.16.2"
+"cargo:sea-orm-cli" = "1.1.14"
 cilium-cli = { version = "0.18.6", exe = "cilium" }
 cilium-hubble = "1.18.0"
 crane = "0.20.6"
@@ -22,6 +25,8 @@ lazygit = "0.54.2"
 mongosh = "2.5.6"
 neovim = "0.11.3"
 node = "24.6.0"
+"pipx:sqlfluff" = "3.4.2"
+python = "latest"
 ripgrep = "14.1.1"
 talosctl = { version = "1.10.6", exe = "talosctl" }
 vault = "1.20.2"
