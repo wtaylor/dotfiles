@@ -20,7 +20,7 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
     -- AI
-    { import = "lazyvim.plugins.extras.ai.supermaven" },
+    -- { import = "lazyvim.plugins.extras.ai.supermaven" },
 
     -- DAP
     { import = "lazyvim.plugins.extras.dap.core" },
