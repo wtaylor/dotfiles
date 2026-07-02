@@ -92,7 +92,7 @@
                     "id": "Clock",
                     "reverseDayMonth": false,
                     "showDate": true,
-                    "showSeconds": false,
+                    "showSeconds": true,
                     "use12HourClock": false
                 },
                 {
@@ -150,7 +150,7 @@
     },
     "network": {
         "bluetoothEnabled": true,
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,
@@ -162,7 +162,7 @@
     },
     "notifications": {
         "doNotDisturb": false,
-        "lastSeenTs": 1757436957000,
+        "lastSeenTs": 1781028526000,
         "monitors": [
         ]
     },
@@ -201,6 +201,11 @@
             {
                 "directory": "/var/home/wtaylor/Pictures/Wallpapers",
                 "name": "DP-1",
+                "wallpaper": "/var/home/wtaylor/Pictures/Wallpapers/earth.png"
+            },
+            {
+                "directory": "/var/home/wtaylor/Pictures/Wallpapers",
+                "name": "eDP-1",
                 "wallpaper": "/var/home/wtaylor/Pictures/Wallpapers/earth.png"
             }
         ],
