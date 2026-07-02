@@ -66,7 +66,7 @@ return {
                 return coroutine.create(function(dap_run_co)
                   vim.ui.select({ "Yes", "No" }, { prompt = "Rebuild Project?" }, function(choice)
                     if choice == "Yes" then
-                      local projects = vim.fn.globpath(vim.fn.getcwd(), "**/*.csproj", 0, 1)
+                      local projects = vim.fn.globpath(vim.fn.getcwd(), "**3/*.csproj", 0, 1)
                       local project_select_opts = {
                         format_item = function(path)
                           return vim.fn.fnamemodify(path, ":t")

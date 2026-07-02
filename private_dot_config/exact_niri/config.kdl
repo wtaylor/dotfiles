@@ -206,7 +206,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "noctalia"
 spawn-at-startup "swaybg" "-i" "/home/wtaylor/Pictures/Wallpapers/earth.png" "-m" "fill"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 
@@ -544,3 +544,4 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+
