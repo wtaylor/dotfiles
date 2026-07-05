@@ -106,6 +106,7 @@ widget_order = [
 avatar_path = "/var/home/wtaylor/.face"
 clipboard_history_max_entries = 10
 polkit_agent = true
+settings_show_advanced = true
 time_format = "{:%H:%M:%S}"
 
     [shell.animation]
@@ -114,10 +115,30 @@ time_format = "{:%H:%M:%S}"
 [theme]
 builtin = "Nord"
 community_palette = "Rose Pine Moon"
+source = "builtin"
+wallpaper_scheme = "m3-content"
 
     [theme.templates]
     builtin_ids = [ "btop", "cava", "gtk3", "gtk4", "starship" ]
     community_ids = [ "fuzzel", "rofi", "steam", "telegram" ]
+
+[wallpaper]
+directory_dark = "/var/home/wtaylor/Pictures/Wallpapers/Night"
+directory_light = "/var/home/wtaylor/Pictures/Wallpapers/Day"
+transition = [ "disc" ]
+transition_on_startup = true
+
+    [wallpaper.automation]
+    recursive = false
+
+    [wallpaper.default]
+    path = "/var/home/wtaylor/Pictures/Wallpapers/Day/mountain.jpg"
+
+    [wallpaper.last]
+    path = "/var/home/wtaylor/Pictures/Wallpapers/Day/mountain.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/var/home/wtaylor/Pictures/Wallpapers/Day/mountain.jpg"
 
 [widget.battery]
 capsule = true
