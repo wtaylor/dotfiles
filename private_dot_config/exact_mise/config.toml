@@ -39,7 +39,7 @@ yamlfmt = "0.17.2"
 
 [settings]
 experimental = true
-idiomatic_version_file_enable_tools = ["python"]
+idiomatic_version_file_enable_tools = ["python", "rust"]
 
 [settings.cargo]
 binstall_only = true

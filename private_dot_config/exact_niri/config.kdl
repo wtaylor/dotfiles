@@ -74,10 +74,6 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
-output "PNP(BNQ) BenQ GL2450H L3D00594019" {
-  transform "90"
-}
-
 output "DP-1" {
   focus-at-startup
 }
@@ -265,6 +261,13 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+// Open game projects on left monitor
+window-rule {
+  match title="ecitys"
+  open-maximized true
+  open-on-output "PNP(BNQ) BenQ GL2450H L3D00594019"
 }
 
 window-rule {
