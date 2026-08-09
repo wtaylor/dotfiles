@@ -1,5 +1,7 @@
 return {
-	color_scheme = "Nord (base16)",
+	color_scheme = "nord",
+	color_scheme_day = "nord-light",
+	color_scheme_night = "nord",
 
 	colors = {
 		tab_bar = {
