@@ -1,0 +1,41 @@
+providers: 
+  webSearchOrder: 
+    - kagi
+    - perplexity
+    - gemini
+    - anthropic
+    - codex
+    - xai
+    - zai
+    - exa
+    - tinyfish
+    - jina
+    - tavily
+    - firecrawl
+    - brave
+    - kimi
+    - parallel
+    - synthetic
+    - searxng
+    - startpage
+    - duckduckgo
+    - ecosia
+    - google
+    - mojeek
+    - public
+modelRoles: 
+  default: openrouter/deepseek/deepseek-v4-flash-0731
+symbolPreset: nerd
+theme: 
+  dark: dark-tundra
+setupVersion: 1
+task: 
+  maxConcurrency: 4
+startup: 
+  checkUpdate: false
+defaultThinkingLevel: auto
+doubleEscapeAction: tree
+tools: 
+  approvalMode: always-ask
+completion: 
+  notify: "off"
