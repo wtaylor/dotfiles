@@ -13,6 +13,6 @@ supporting_files/
 {{- if eq .chezmoi.hostname "ai-sandbox" }}
 Pictures/**
 code/**
-dot_face
-dot_gitconfig
+.face
+.gitconfig
 {{- end }}
