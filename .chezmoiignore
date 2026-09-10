@@ -9,3 +9,10 @@ supporting_files/
 .config/aerospace/**
 .config/karabiner/**
 {{- end }}
+
+{{- if eq .chezmoi.hostname "ai-sandbox" }}
+Pictures/**
+code/**
+dot_face
+dot_gitconfig
+{{- end }}
