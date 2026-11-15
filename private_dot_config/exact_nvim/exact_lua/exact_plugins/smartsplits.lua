@@ -1,10 +1,22 @@
 return {
-  "mrjones2014/smart-splits.nvim",
+  "smart-splits-nvim/smart-splits.nvim",
   lazy = false,
+  dependencies = {
+    {
+      "smart-splits-nvim/backend-wezterm",
+      opts = {
+        cli_path = "wezterm",
+      },
+    },
+  },
   opts = {
-    at_edge = "stop",
-    float_win_behavior = "previous",
-    multiplexer_integration = "wezterm",
+    move = {
+      at_edge = "stop",
+      float = "previous",
+    },
+    mux = {
+      backend = "smart-splits-backend-wezterm",
+    },
     ignored_filetypes = {},
   },
   keys = {
